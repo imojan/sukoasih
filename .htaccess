@@ -1,0 +1,18 @@
+# Set halaman default ke login/index.php
+DirectoryIndex login/index.php
+
+# Aktifkan URL rewrite
+RewriteEngine On
+
+# Hilangkan ekstensi .php dari URL (opsional)
+# Contoh: /dashboard → dashboard.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Lindungi file sensitif
+<FilesMatch "(koneksi\.php|klinik\.sql)">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
